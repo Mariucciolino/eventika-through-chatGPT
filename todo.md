@@ -1,0 +1,95 @@
+
+- [x] Remove "close to nature" pictures from 3000sqm gardens, keep only garden games video
+- [x] Move garden games video from "close to nature" to gardens section
+- [x] Move 72sqm party tent to first item in INCLUDES list on Events page
+- [x] Update parking from 20 to 30 cars everywhere
+- [x] Add alternative dates field to booking form (free typing)
+- [x] Change "cabin hotel" to "cottage hotel" throughout
+- [x] Update booking email to mario@eventika.se (not mario.hytten@gmail.com)
+- [x] Swedish: Replace PLATS with STÄLLE
+- [x] Swedish: VAR? DISTANCES > AVSTÅND
+- [x] Swedish: på samma plats > på samma ställe
+- [x] Swedish: Fix EVENEMANG screenshows not working
+- [x] Swedish: Platsavgift > Anläggningsavgift
+- [x] Swedish: grandios utsikt > storslagen utsikt
+- [x] Swedish: parkering för upp till 30 bilar
+- [x] Swedish: båt med elmotor (in experiences)
+- [x] Swedish: GO NUTS! > GÖR NÅGOT HELT GALET!
+- [x] Swedish: BOKNING > BOKNINGSFÖRFRÅGAN
+- [x] Swedish: Contact us through either of: > Kontakta oss antingen genom:
+- [x] Swedish: platsen > stället (find any remaining instances)
+- [x] Swedish: Boka Ditt Evenemang > Beskriv ditt evenemang
+- [x] Fix: 3000kvm trädgårdar video does not autoplay
+- [x] Fix: Remove duplicate ÖVERNATTA paragraph
+- [x] Change default language from English to Swedish
+- [x] Fix gardens video not playing on Swedish side (ställe page)
+- [x] Add video loop option for continuous playback
+- [x] Add loading spinner for videos while downloading
+- [x] Optimize video file size (compress from 23MB to ~5-8MB)
+- [x] Add visitor statistics/analytics tracking
+- [x] Fix navigation menu second item to "stället"
+- [x] Add missing pictures 2, 3, 4 to CATERING slideshow
+- [x] Add table dressing image to DUKNING box
+- [x] Add missing slideshow to OBEGRÄNSAT LEKSAKSPAKET (already has 14 images)
+- [x] Update PRISÖVERSIKT deposit text: "Deposition = Lokalhyra 8000kr"
+- [x] Fix red error message on booking page
+- [x] Allow MAT OCH DRYCK section to have both options unticked (not required)
+- [x] Create visitor statistics dashboard with key metrics
+- [x] Display page views, unique visitors, popular pages, and referrer sources
+- [x] Add charts and visualizations for analytics data
+- [x] Implement authentication/access control for dashboard
+- [x] Create FAQ accordion section with common questions
+- [x] Add FAQ content in both English and Swedish
+- [x] Implement collapsible accordion UI component
+- [x] Swedish: Change "cottage hotel" to "stughotell" (keep "cottage hotel" in English)
+- [x] FAQ: Update capacity answer - 60 guests comfortably, up to 90 with table rows in three lines
+- [x] Investigate and fix "1 error" message appearing during publish
+- [x] HEM: Fix video not autoplaying after hero image
+- [x] STÄLLET: Change "Address" to "Adress" in Swedish
+- [x] STÄLLET: Change "Distances" to "Avstånd" in Swedish
+- [x] EVENEMANG Dukning: Add missing table setting image (plates, glasses, etc)
+- [x] EVENEMANG Kök: Move catering(2) image here
+- [x] EVENEMANG Övernattning: Reuse drone image of cottage hotel
+- [x] EVENEMANG Obegränsat leksakspaket: Add missing toy package images (already had 14)
+- [x] BOKNINGSFÖRFRÅGAN: Add deposit refund policy text to Prisöversikt
+- [ ] Verify kitchen section has correct image (catering(2) should be in kitchen, not c- [x] Create booking calendar system (owner marks dates, customers view)
+- [x] Add database schema for booked dates
+- [x] Create API endpoints for owner to manage booked dates
+- [x] Build admin calendar interface (owner-only)
+- [x] Add public calendar view on booking page showing booked datesQuick Links" in footer
+- [x] Swedish: Translate "20min from Göteborg" (already correct in Swedish content)
+- [x] Fix: Dukning (table) images not showing on Events page (was showing correctly)
+- [x] Fix: Leksakspaket (toys) images not showing on Events page (fixed detection logic)
+- [x] Fix HEM page video not autoplaying after hero image
+- [x] Swedish: Translate footer Quick Links navigation items (Home→hem, Location→stället, Events→evenemang, Experiences→upplevelser, Book Now→bokningsförfrågan)
+- [x] Remove duplicate toys(9).jpg from Unlimited toy package carousel (first occurrence)
+- [x] Crop owner.jpg to make person more visible on mobile
+- [x] Remove kitchen picture from catering carousel
+- [x] Compress Go Nuts videos for better mobile performance (28MB → 7.7MB each)
+- [x] Fix Go Nuts carousel: added videos 8 & 10, fixed looping bug, set order to 0,3,8,2,7,10
+- [x] Add booking name labels (12 characters max) to calendar admin for identifying bookings
+- [x] Fix analytics tracking error in development by adding silent error handling
+- [x] Fix calendar admin - booking dates ARE saving correctly (confirmed working)
+- [x] Fix BookingCalendar - booked dates now show as red/strikethrough instead of disappearing
+- [x] Fix "Unauthorized" error - fixed React hooks order, authentication now working correctly
+- [x] Fix critical bug: booked dates saved in DB but don't show as red on customer booking calendar
+- [x] Remove duplicate name display from top navigation (keep only in calendar admin header)
+- [x] Fix calendar width in Tillgänglighet section - make it use full container width instead of being squashed
+- [x] Improve PRISÖVERSIKT section formatting - better spacing and alignment for prices
+- [x] Shorten placeholder text for "Alternativa datum" field to prevent awkward wrapping
+- [ ] Trim waterski video to approximately half its current length to reduce file size
+- [x] Add placeholder image for gardens video section (3000kvm trädgårdar) until video is re-uploaded
+- [ ] HOME: Keep still image for hero (video not working yet)
+- [x] STÄLLET/VAR: Use object-contain to show full blue road on mobile
+- [x] NÄRA NATUREN: Use object-contain to show both deer on mobile
+
+- [x] EVENEMANG/ÖVERNATTNING: Use object-contain to show all 3 cottages
+- [x] EVENEMANG/OBEGRÄNSAT: Use object-contain to show person in toy package images
+- [x] GO NUTS: Add Vimeo button link for jetboard video
+- [ ] GO NUTS: Trim go nuts (10) video to first 6 seconds
+- [x] HOME: Stop transition from still image to blank background
+- [x] BOOKING/AVAILABILITY: Fix calendar width - increased cell size to 3rem
+- [x] BOOKING/AVAILABILITY: Fix calendar stuck on December - now shows current month
+- [ ] Fix "unauthorized" error when adding bookings in calendar admin (May 30th test)
+- [ ] Fix database schema error when inserting bookings - createdBy, createdAt, updatedAt columns issue
+- [x] Swedish: Replace "terrass" with "altan" everywhere
