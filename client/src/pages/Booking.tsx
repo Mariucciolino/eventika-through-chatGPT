@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Section } from '@/components/Section';
 import { BookingForm } from '@/components/BookingForm';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -6,6 +7,7 @@ import { BookingCalendar } from '@/components/BookingCalendar';
 
 export default function Booking() {
   const { t, language } = useLanguage();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -30,11 +32,11 @@ export default function Booking() {
           </div>
 
               <div className="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border border-primary/10">
-                <BookingForm />
+                <BookingForm selectedDate={selectedDate} onDateChange={setSelectedDate} />
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <BookingCalendar />
+              <BookingCalendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
             </div>
           </div>
         </div>

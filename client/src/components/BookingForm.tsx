@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -9,7 +9,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
-import { trpc } from '@/lib/trpc';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -54,7 +53,12 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function BookingForm() {
+type BookingFormProps = {
+  selectedDate?: Date;
+  onDateChange?: (date: Date | undefined) => void;
+};
+
+export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
   const { language } = useLanguage();
   
   const form = useForm<FormValues>({
@@ -134,26 +138,79 @@ export function BookingForm() {
     return total;
   }, [watchedValues.adults, watchedValues.children, watchedValues.foodOption, watchedValues.cateringBudget, watchedValues.tableDressing, watchedValues.grill, watchedValues.overnight, watchedValues.evika1, watchedValues.evika2, watchedValues.evika3, watchedValues.evika4, watchedValues.evika5, watchedValues.toys, watchedValues.cleaning]);
 
-  const submitBooking = trpc.booking.submit.useMutation({
-    onSuccess: () => {
-      toast.success(language === 'en' 
-        ? "Booking request sent successfully! We will contact you soon."
-        : "Bokningsförfrågan skickad! Vi kontaktar dig snart.");
-      form.reset();
-    },
-    onError: (error) => {
-      toast.error(language === 'en'
-        ? "Failed to send booking request. Please try again or contact us directly."
-        : "Kunde inte skicka bokningsförfrågan. Försök igen eller kontakta oss direkt.");
-      console.error(error);
-    },
-  });
+  const formatDateForInput = (d: Date): string => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+
+  // Sync calendar selection into the form's date field
+  useEffect(() => {
+    if (!selectedDate) return;
+    form.setValue('date', formatDateForInput(selectedDate), { shouldValidate: true });
+  }, [selectedDate]);
 
   function onSubmit(values: FormValues) {
-    submitBooking.mutate({
-      ...values,
-      totalEstimate: totalPrice,
-    });
+    // Guaranteed delivery: open a prefilled email to mario@eventika.se.
+    // This avoids reliance on any server-side notification service.
+    const subject = encodeURIComponent(`Booking request - ${values.name} - ${values.date}`);
+    const lines: string[] = [];
+    lines.push(`NEW BOOKING REQUEST`);
+    lines.push(``);
+    lines.push(`CONTACT DETAILS`);
+    lines.push(`Name: ${values.name}`);
+    lines.push(`Email: ${values.email}`);
+    lines.push(`Phone: ${values.phone}`);
+    lines.push(``);
+    lines.push(`EVENT DETAILS`);
+    lines.push(`Date: ${values.date}`);
+    lines.push(`Alternative dates: ${values.alternativeDates || 'None'}`);
+    lines.push(`Adults: ${values.adults}`);
+    lines.push(`Children (>12y): ${values.children || '0'}`);
+    lines.push(``);
+    lines.push(`FOOD & DRINKS`);
+    if (values.foodOption === 'ownCooking') {
+      lines.push(`Own cooking/caterer (Kitchen use: 2500 SEK)`);
+    } else if (values.foodOption === 'catering') {
+      lines.push(`Catering requested`);
+      lines.push(`  Menu style: ${values.cateringMenuStyle || 'Not specified'}`);
+      lines.push(`  Budget per person: ${values.cateringBudget || 'Not specified'} SEK`);
+    } else {
+      lines.push(`Not specified`);
+    }
+    lines.push(``);
+    lines.push(`EQUIPMENT REQUESTED (no cost)`);
+    const equipment: string[] = [];
+    if (values.smartTV) equipment.push('Smart TV');
+    if (values.projector) equipment.push('Projector on 4m wall');
+    if (values.soundSystem) equipment.push('B&O Sound System');
+    lines.push(equipment.length ? equipment.join(', ') : 'None');
+    lines.push(``);
+    lines.push(`OTHER OPTIONALS`);
+    const optionals: string[] = [];
+    if (values.tableDressing) optionals.push('Table dressing');
+    if (values.grill) optionals.push('BBQ gas grill');
+    if (values.toys) optionals.push('Unlimited Toy Package');
+    if (values.cleaning) optionals.push('Cleaning Service');
+    lines.push(optionals.length ? optionals.join(', ') : 'None');
+    lines.push(``);
+    lines.push(`ESTIMATED TOTAL: ${totalPrice.toLocaleString()} SEK`);
+    lines.push(``);
+    lines.push(`MESSAGE`);
+    lines.push(values.message || '');
+
+    const body = encodeURIComponent(lines.join('\n'));
+    const mailto = `mailto:mario@eventika.se?subject=${subject}&body=${body}`;
+
+    window.location.href = mailto;
+
+    toast.success(language === 'en'
+      ? 'Your email app will open with a prefilled booking request. Please press Send.'
+      : 'Din e-post öppnas med en förifylld bokningsförfrågan. Skicka mejlet.');
+
+    form.reset();
+    onDateChange?.(undefined);
   }
 
   const includedItems = language === 'en' ? [
@@ -175,7 +232,7 @@ export function BookingForm() {
   ];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
       <div className="lg:col-span-2">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -231,7 +288,20 @@ export function BookingForm() {
                     <FormItem>
                       <FormLabel>{language === 'en' ? 'Event Date' : 'Eventdatum'}</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} />
+                        <Input
+                          type="date"
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            // keep calendar in sync if user types the date
+                            if (e.target.value) {
+                              const d = new Date(`${e.target.value}T00:00:00`);
+                              onDateChange?.(d);
+                            } else {
+                              onDateChange?.(undefined);
+                            }
+                          }}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -818,7 +888,7 @@ export function BookingForm() {
       </div>
 
       {/* Price Summary Sidebar */}
-      <div className="lg:col-span-1">
+      <div className="lg:col-span-2">
         <Card className="sticky top-24">
           <CardHeader>
             <CardTitle className="text-primary uppercase">

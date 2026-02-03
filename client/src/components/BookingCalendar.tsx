@@ -2,7 +2,12 @@ import { trpc } from '@/lib/trpc';
 import { Calendar } from '@/components/ui/calendar';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export function BookingCalendar() {
+type BookingCalendarProps = {
+  selectedDate?: Date;
+  onSelectDate?: (date: Date | undefined) => void;
+};
+
+export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarProps) {
   const { language } = useLanguage();
   const { data: bookedDates } = trpc.calendar.getBookedDates.useQuery(undefined, {
     refetchOnWindowFocus: true,
@@ -23,7 +28,11 @@ export function BookingCalendar() {
           : 'Dates marked in red are already booked. Please choose another date for your inquiry.'}
       </p>
       <Calendar
+        mode="single"
+        selected={selectedDate}
+        onSelect={onSelectDate}
         defaultMonth={new Date()}
+        disabled={bookedDateObjects}
         className="rounded-md border w-full [&_table]:w-full [&_table]:table-fixed [--cell-size:3rem]"
         classNames={{
           root: '!w-full',

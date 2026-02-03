@@ -1,19 +1,14 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu, X, LogIn, LogOut, User } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'wouter';
-import { trpc } from '@/lib/trpc';
-import { getLoginUrl } from '@/const';
 
 export function Navigation() {
   const { t, language, setLanguage } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
-  const { data: user } = trpc.auth.me.useQuery();
-  const logoutMutation = trpc.auth.logout.useMutation({
-    onSuccess: () => window.location.reload(),
-  });
+
 
   const navLinks = [
     { key: 'home', label: t.nav.home.toLowerCase(), href: '/' },
@@ -49,23 +44,6 @@ export function Navigation() {
         
         {/* User & Language Toggle - Right Aligned */}
         <div className="hidden md:flex items-center gap-4 w-1/6 justify-end">
-          {user ? (
-            <button
-              onClick={() => logoutMutation.mutate()}
-              className="text-gray-600 hover:text-[#5e2a84] transition-colors"
-              title="Logout"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-          ) : (
-            <a
-              href={getLoginUrl()}
-              className="flex items-center gap-1 text-sm text-gray-600 hover:text-[#5e2a84] transition-colors"
-            >
-              <LogIn className="h-4 w-4" />
-              <span>Login</span>
-            </a>
-          )}
           <button
             onClick={() => setLanguage('en')}
             className={cn(

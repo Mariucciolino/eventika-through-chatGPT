@@ -442,7 +442,7 @@ export const content = {
       grill: [
         { type: "image" as const, src: "/images/events/grill/grill(1).jpg", alt: "Grill 1" },
         { type: "image" as const, src: "/images/events/grill/grill(2).JPG", alt: "Grill 2" },
-        { type: "video" as const, src: "/images/events/grill/grill(1).MP4", alt: "Grill video" }
+        // Video removed (file not available). If you add it later, reintroduce it here.
       ],
       table: [
         { type: "image" as const, src: "/images/events/table/tabledressing.jpg", alt: "Table dressing" }
@@ -542,8 +542,8 @@ export const content = {
       ],
       closetonature: [
         { type: "image" as const, src: "/images/location/gardens/closetonature(0).jpg", alt: "Nature 0" },
-        { type: "image" as const, src: "/images/location/gardens/closetonature(1).jpg", alt: "Nature 1" },
-        { type: "image" as const, src: "/images/location/gardens/closetonature(1).jpeg", alt: "Nature 1b" },
+        // closetonature(1).jpg in the repo is a 0-byte placeholder; use the jpeg instead.
+        { type: "image" as const, src: "/images/location/gardens/closetonature(1).jpeg", alt: "Nature 1" },
         { type: "image" as const, src: "/images/location/gardens/closetonature(3).jpg", alt: "Nature 3" },
         { type: "image" as const, src: "/images/location/gardens/closetonature(3a).jpg", alt: "Nature 3a" },
         { type: "image" as const, src: "/images/location/gardens/closetonature(5).jpg", alt: "Nature 5" },

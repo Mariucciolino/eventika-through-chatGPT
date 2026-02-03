@@ -7,7 +7,7 @@ import { Link } from 'wouter';
 import { Waves, Zap, Sailboat, Trees, Ship, Gift, ExternalLink } from 'lucide-react';
 
 export default function Experiences() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Map icons to experience items based on index
   // Order in content.ts: spa, relax, safari, island, gonuts, free
@@ -29,6 +29,13 @@ export default function Experiences() {
   return (
     <div className="animate-in fade-in duration-500">
       <Section id="experiences-hero" title={t.experiences.title} className="bg-secondary/30 pt-12 pb-8">
+        <div className="max-w-4xl mx-auto mb-10 text-center">
+          <p className="text-base md:text-lg text-muted-foreground">
+            {language === 'en'
+              ? 'To book individual experiences, simply email mario@eventika.se with desired experience, number of participants and date. Payment will take place on the day either with debit card, swish or cash.'
+              : 'För att boka enstaka upplevelser, skicka en enkel mejl till mario@eventika.se med önskad upplevelse, antal deltagare och datum. Betalning sker på dagen med kort, swish eller kontant.'}
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {t.experiences.items.map((exp, index) => {
             const Icon = icons[index];
