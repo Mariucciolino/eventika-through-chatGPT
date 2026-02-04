@@ -18,7 +18,7 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   const bookedDateObjects = (bookedDates || []).map(dateStr => new Date(dateStr + 'T00:00:00'));
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-border shadow-sm w-full min-w-[360px]">
+    <div className="rounded-md border w-full">
       <h3 className="text-xl font-bold mb-4 text-primary">
         {language === 'sv' ? 'Tillgänglighet' : 'Availability'}
       </h3>
@@ -28,28 +28,15 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
           : 'Dates marked in red are already booked. Please choose another date for your inquiry.'}
       </p>
    <Calendar
-  : "w-full",
-  month: "w-full",
-
-  caption: "relative flex items-center justify-center pt-1",
-  caption_label: "text-sm font-medium",
-
-  // Make nav clickable and above overlays
-  nav: "absolute inset-y-0 left-0 right-0 flex items-center justify-between px-1 pointer-events-none",
-  nav_button:
-    "h-8 w-8 rounded-md border border-border bg-transparent p-0 opacity-70 hover:opacity-100 pointer-events-auto z-10",
-  nav_button_previous: "",
-  nav_button_next: "",
-
-  table: "w-full table-fixed",
-  head_row: "w-full",
-  row: "w-full",
-  head_cell: "w-10 text-center text-muted-foreground font-normal text-[0.8rem]",
-  cell: "w-10 h-10 p-0 text-center",
-  day: "w-10 h-10 p-0 font-normal",
-  }}
+  mode="single"
+  selected={selectedDate}
+  onSelect={onSelectDate}
+  defaultMonth={new Date()}
+  disabled={bookedDateObjects}
+  className="rounded-md border w-full"
   modifiers={{ booked: bookedDateObjects }}
   modifiersClassNames={{
-    booked: "bg-red-100 text-red-800 font-bold hover:bg-red-100 hover:text-red-800 line-through",
+    booked:
+      "bg-red-100 text-red-800 font-bold hover:bg-red-100 hover:text-red-800 line-through",
   }}
-/>
+  
