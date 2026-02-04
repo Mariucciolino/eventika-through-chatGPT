@@ -873,16 +873,13 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
               />
             </div>
 
-            <Button 
-              type="submit" 
-              size="lg" 
-              className="w-full"
-              disabled={submitBooking.isPending}
-            >
-              {submitBooking.isPending 
-                ? (language === 'en' ? 'Sending...' : 'Skickar...') 
-                : (language === 'en' ? 'Send Booking Request' : 'Skicka bokningsförfrågan')}
-            </Button>
+           <Button
+  type="submit"
+  size="lg"
+  className="w-full"
+>
+  {language === 'en' ? 'Open email to send request' : 'Öppna e-post för att skicka förfrågan'}
+</Button>
           </form>
         </Form>
       </div>
