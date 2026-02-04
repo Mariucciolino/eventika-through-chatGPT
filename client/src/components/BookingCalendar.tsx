@@ -35,15 +35,21 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   disabled={bookedDateObjects}
   className="rounded-md border w-full"
   classNames={{
-    root: "w-full",
-    months: "w-full",
-    month: "w-full",
-    table: "w-full table-fixed",
-    head_row: "w-full",
-    row: "w-full",
-    head_cell: "w-10 text-center text-muted-foreground font-normal text-[0.8rem]",
-    cell: "w-10 h-10 p-0 text-center",
-    day: "w-10 h-10 p-0 font-normal",
+   root: "w-full",
+  months: "w-full",
+  month: "w-full",
+  caption: "relative flex items-center justify-center pt-1",
+  caption_label: "text-sm font-medium",
+  nav: "flex items-center gap-2",
+  nav_button: "h-8 w-8 rounded-md border border-border bg-transparent p-0 opacity-70 hover:opacity-100",
+  nav_button_previous: "absolute left-1",
+  nav_button_next: "absolute right-1",
+  table: "w-full table-fixed",
+  head_row: "w-full",
+  row: "w-full",
+  head_cell: "w-10 text-center text-muted-foreground font-normal text-[0.8rem]",
+  cell: "w-10 h-10 p-0 text-center",
+  day: "w-10 h-10 p-0 font-normal",
   }}
   modifiers={{ booked: bookedDateObjects }}
   modifiersClassNames={{
