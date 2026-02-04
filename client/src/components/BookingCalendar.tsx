@@ -31,7 +31,6 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   mode="single"
   selected={selectedDate}
   onSelect={onSelectDate}
-  defaultMonth={new Date()}
   disabled={bookedDateObjects}
   className="rounded-md border w-full"
   modifiers={{ booked: bookedDateObjects }}
