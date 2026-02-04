@@ -18,7 +18,7 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   const bookedDateObjects = (bookedDates || []).map(dateStr => new Date(dateStr + 'T00:00:00'));
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
+    <div className="bg-white p-6 rounded-xl border border-border shadow-sm w-full min-w-[360px]">
       <h3 className="text-xl font-bold mb-4 text-primary">
         {language === 'sv' ? 'Tillgänglighet' : 'Availability'}
       </h3>
