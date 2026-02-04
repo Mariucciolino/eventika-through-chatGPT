@@ -50,6 +50,3 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
     booked: "bg-red-100 text-red-800 font-bold hover:bg-red-100 hover:text-red-800 line-through",
   }}
 />
-    </div>
-  );
-}
