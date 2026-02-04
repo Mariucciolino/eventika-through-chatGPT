@@ -28,22 +28,19 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
           : 'Dates marked in red are already booked. Please choose another date for your inquiry.'}
       </p>
    <Calendar
-  mode="single"
-  selected={selectedDate}
-  onSelect={onSelectDate}
-  defaultMonth={new Date()}
-  disabled={bookedDateObjects}
-  className="rounded-md border w-full"
-  classNames={{
-   root: "w-full",
-  months: "w-full",
+  : "w-full",
   month: "w-full",
+
   caption: "relative flex items-center justify-center pt-1",
   caption_label: "text-sm font-medium",
-  nav: "flex items-center gap-2",
-  nav_button: "h-8 w-8 rounded-md border border-border bg-transparent p-0 opacity-70 hover:opacity-100",
-  nav_button_previous: "absolute left-1",
-  nav_button_next: "absolute right-1",
+
+  // Make nav clickable and above overlays
+  nav: "absolute inset-y-0 left-0 right-0 flex items-center justify-between px-1 pointer-events-none",
+  nav_button:
+    "h-8 w-8 rounded-md border border-border bg-transparent p-0 opacity-70 hover:opacity-100 pointer-events-auto z-10",
+  nav_button_previous: "",
+  nav_button_next: "",
+
   table: "w-full table-fixed",
   head_row: "w-full",
   row: "w-full",
