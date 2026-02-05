@@ -249,7 +249,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
                     <FormItem>
                       <FormLabel>{language === 'en' ? 'Name' : 'Namn'}</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} />
+                        <Input placeholder="Name,LastName" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -262,7 +262,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="john@example.com" {...field} />
+                        <Input placeholder="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -275,7 +275,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
                     <FormItem>
                       <FormLabel>{language === 'en' ? 'Phone' : 'Telefon'}</FormLabel>
                       <FormControl>
-                        <Input placeholder="+46 70 123 45 67" {...field} />
+                        <Input placeholder="Phone" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -315,7 +315,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
                       <FormLabel>{language === 'en' ? 'Alternative Dates (optional)' : 'Alternativa datum (valfritt)'}</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder={language === 'en' ? 'e.g., June 15, June 22, or July 1' : 't.ex. 15 juni, 22 juni eller 1 juli'}
+                          placeholder={language === 'en' ? 'Alternative dates (optional)' : 'Alternativa datum (valfritt)'}
                           {...field} 
                         />
                       </FormControl>
