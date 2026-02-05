@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
-import { trpc } from '@/lib/trpc';
-import { Calendar } from '@/components/ui/calendar';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { trpc } from "@/lib/trpc";
+import { Calendar } from "@/components/ui/calendar";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type BookingCalendarProps = {
   selectedDate?: Date;
   onSelectDate?: (date: Date | undefined) => void;
-  const [month, setMonth] = useState<Date>(() => selectedDate ?? new Date());
-
-useEffect(() => {
-  if (selectedDate) setMonth(selectedDate);
-}, [selectedDate]);
 };
 
 export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarProps) {
   const { language } = useLanguage();
+
+  const [month, setMonth] = useState<Date>(() => selectedDate ?? new Date());
+
+  useEffect(() => {
+    if (selectedDate) setMonth(selectedDate);
+  }, [selectedDate]);
+
   const { data: bookedDates } = trpc.calendar.getBookedDates.useQuery(undefined, {
     refetchOnWindowFocus: true,
     refetchOnMount: true,
-    staleTime: 0, // Always consider data stale, refetch on focus
+    staleTime: 0,
   });
 
-  const bookedDateObjects = (bookedDates || []).map(dateStr => new Date(dateStr + 'T00:00:00'));
+  const bookedDateObjects = (bookedDates || []).map((dateStr) => new Date(dateStr + "T00:00:00"));
 
   return (
     <div className="rounded-md border w-full">
