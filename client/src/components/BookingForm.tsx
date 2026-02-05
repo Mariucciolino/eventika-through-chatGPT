@@ -236,96 +236,117 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
       <div className="lg:col-span-2">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            {/* Personal Details */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-bold text-primary mb-6 uppercase">
-                {language === 'en' ? 'Contact Details' : 'Kontaktuppgifter'}
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{language === 'en' ? 'Name' : 'Namn'}</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Name,LastName" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{language === 'en' ? 'Phone' : 'Telefon'}</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Phone" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="date"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{language === 'en' ? 'Event Date' : 'Eventdatum'}</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="date"
-                          {...field}
-                          onChange={(e) => {
-                            field.onChange(e);
-                            // keep calendar in sync if user types the date
-                            if (e.target.value) {
-                              const d = new Date(`${e.target.value}T00:00:00`);
-                              onDateChange?.(d);
-                            } else {
-                              onDateChange?.(undefined);
-                            }
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="alternativeDates"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{language === 'en' ? 'Alternative Dates (optional)' : 'Alternativa datum (valfritt)'}</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder={language === 'en' ? 'Alternative dates (optional)' : 'Alternativa datum (valfritt)'}
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
+  <h3 className="text-xl font-bold text-primary mb-6 uppercase">
+    {language === "en" ? "Contact Details" : "Kontaktuppgifter"}
+  </h3>
 
+  <div className="grid grid-cols-1 gap-6">
+    {/* Name */}
+    <FormField
+      control={form.control}
+      name="name"
+      render={({ field }) => (
+        <FormItem>
+          <FormControl>
+            <Input
+              placeholder={language === "en" ? "NAME" : "NAMN"}
+              aria-label="Name"
+              {...field}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    {/* Email */}
+    <FormField
+      control={form.control}
+      name="email"
+      render={({ field }) => (
+        <FormItem>
+          <FormControl>
+            <Input
+              type="email"
+              placeholder="EMAIL"
+              aria-label="Email"
+              {...field}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    {/* Phone */}
+    <FormField
+      control={form.control}
+      name="phone"
+      render={({ field }) => (
+        <FormItem>
+          <FormControl>
+            <Input
+              placeholder={language === "en" ? "PHONE" : "TELEFON"}
+              aria-label="Phone"
+              {...field}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    {/* Event Date */}
+    <FormField
+      control={form.control}
+      name="date"
+      render={({ field }) => (
+        <FormItem>
+          <FormControl>
+            <Input
+              type="date"
+              aria-label="Event date"
+              {...field}
+              onChange={(e) => {
+                field.onChange(e);
+                if (e.target.value) {
+                  const d = new Date(`${e.target.value}T00:00:00`);
+                  onDateChange?.(d);
+                } else {
+                  onDateChange?.(undefined);
+                }
+              }}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    {/* Alternative Dates */}
+    <FormField
+      control={form.control}
+      name="alternativeDates"
+      render={({ field }) => (
+        <FormItem>
+          <FormControl>
+            <Textarea
+              placeholder={
+                language === "en"
+                  ? "ALTERNATIVE DATES (optional)"
+                  : "ALTERNATIVA DATUM (valfritt)"
+              }
+              aria-label="Alternative dates"
+              {...field}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  </div>
+</div>
             {/* Guest Count */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-border">
               <h3 className="text-xl font-bold text-primary mb-6 uppercase">
