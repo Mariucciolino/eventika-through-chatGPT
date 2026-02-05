@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { trpc } from '@/lib/trpc';
 import { Calendar } from '@/components/ui/calendar';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -5,6 +6,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
 type BookingCalendarProps = {
   selectedDate?: Date;
   onSelectDate?: (date: Date | undefined) => void;
+  const [month, setMonth] = useState<Date>(() => selectedDate ?? new Date());
+
+useEffect(() => {
+  if (selectedDate) setMonth(selectedDate);
+}, [selectedDate]);
 };
 
 export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarProps) {
@@ -29,6 +35,8 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
       </p>
    <Calendar
   mode="single"
+  month={month}
+  onMonthChange={setMonth}
   selected={selectedDate}
   onSelect={onSelectDate}
   disabled={bookedDateObjects}
