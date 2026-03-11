@@ -24,7 +24,10 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   new Date("2026-06-05T00:00:00"),
   new Date("2026-06-06T00:00:00"),
   new Date("2026-06-07T00:00:00"),
-  new Date("2026-06-08T00:00:00"),    
+  new Date("2026-06-08T00:00:00"),
+  new Date("2026-08-28T00:00:00"),
+  new Date("2026-08-29T00:00:00"),
+  new Date("2026-08-30T00:00:00"),
 ];
 
 const bookedDateObjects = [
