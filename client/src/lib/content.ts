@@ -421,7 +421,7 @@ export const content = {
   },
   media: {
     home: {
-      heroImage: "/images/home/Home(1).jpg",
+      heroImage: "/images/home/Home.jpg",
       // heroVideo: "/images/home/Home(2).mp4" // Temporarily removed - re-upload via File Storage
     },
     events: {
