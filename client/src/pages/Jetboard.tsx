@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 
 export default function Jetboard() {
   const { language } = useLanguage();
-
   const isSv = language === "sv";
 
   return (
@@ -21,9 +20,6 @@ export default function Jetboard() {
                   poster="/images/experiences/gonuts/gonuts(3).jpg"
                 >
                   <source src="/images/experiences/gonuts/jetboard-promo.mp4" type="video/mp4" />
-                  {/* If you keep the original file instead of converting to mp4, use this line instead:
-                  <source src="/images/experiences/gonuts/Eventika Jetboard for ICA screens.mov" type="video/quicktime" />
-                  */}
                 </video>
               </div>
 
