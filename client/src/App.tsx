@@ -17,10 +17,9 @@ import { Layout } from '@/components/Layout';
 import { useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { trackPageView } from '@/lib/analytics';
-
+import Jetboard from '@/pages/Jetboard';
 function App() {
   const [location] = useLocation();
-
   // Track page views
   useEffect(() => {
     trackPageView({
@@ -41,11 +40,12 @@ function App() {
                 <Route path="/experiences" component={Experiences} />
                 <Route path="/location" component={Location} />
                 <Route path="/booking" component={Booking} />
+                <Route path="/jetboard" component={Jetboard} />
                 <Route path="/analytics" component={Analytics} />
                 <Route path="/calendar-admin" component={CalendarAdmin} />
                 <Route component={NotFound} />
               </Switch>
-            </Layout>
+              </Layout>
             <Toaster />
           </ErrorBoundary>
         </QueryClientProvider>
