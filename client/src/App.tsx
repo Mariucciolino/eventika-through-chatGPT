@@ -6,21 +6,22 @@ import NotFound from "@/pages/not-found";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import Home from '@/pages/Home';
-import Events from '@/pages/Events';
-import Experiences from '@/pages/Experiences';
-import Location from '@/pages/Location';
-import Booking from '@/pages/Booking';
-import { Analytics } from '@/pages/Analytics';
-import CalendarAdmin from '@/pages/CalendarAdmin';
-import { Layout } from '@/components/Layout';
-import { useEffect } from 'react';
-import { useLocation } from 'wouter';
-import { trackPageView } from '@/lib/analytics';
-import Jetboard from '@/pages/Jetboard';
+import Home from "@/pages/Home";
+import Events from "@/pages/Events";
+import Experiences from "@/pages/Experiences";
+import Location from "@/pages/Location";
+import Booking from "@/pages/Booking";
+import Jetboard from "@/pages/Jetboard";
+import { Analytics } from "@/pages/Analytics";
+import CalendarAdmin from "@/pages/CalendarAdmin";
+import { Layout } from "@/components/Layout";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
+import { trackPageView } from "@/lib/analytics";
+
 function App() {
   const [location] = useLocation();
-  // Track page views
+
   useEffect(() => {
     trackPageView({
       url: window.location.href,
@@ -45,7 +46,7 @@ function App() {
                 <Route path="/calendar-admin" component={CalendarAdmin} />
                 <Route component={NotFound} />
               </Switch>
-              </Layout>
+            </Layout>
             <Toaster />
           </ErrorBoundary>
         </QueryClientProvider>
