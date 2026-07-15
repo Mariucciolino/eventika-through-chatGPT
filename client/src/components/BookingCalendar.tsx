@@ -20,14 +20,12 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   const manualBlocked = [
   new Date("2026-05-23T00:00:00"),
   new Date("2026-05-30T00:00:00"),
-  new Date("2026-06-04T00:00:00"),
-  new Date("2026-06-05T00:00:00"),
-  new Date("2026-06-06T00:00:00"),
-  new Date("2026-06-07T00:00:00"),
-  new Date("2026-06-08T00:00:00"),
+  new Date("2026-08-01T00:00:00"),
+  new Date("2026-08-22T00:00:00"),
   new Date("2026-08-28T00:00:00"),
   new Date("2026-08-29T00:00:00"),
-  new Date("2026-08-30T00:00:00"),
+  new Date("2026-09-26T00:00:00"),
+  new Date("2027-06-26T00:00:00"),
 ];
 
 const bookedDateObjects = [
