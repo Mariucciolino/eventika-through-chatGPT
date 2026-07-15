@@ -24,7 +24,7 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
   new Date("2026-08-22T00:00:00"),
   new Date("2026-08-28T00:00:00"),
   new Date("2026-08-29T00:00:00"),
-  new Date("2026-09-26T00:00:00"),
+  new Date("2026-09-05T00:00:00"),
   new Date("2027-06-26T00:00:00"),
 ];
 
