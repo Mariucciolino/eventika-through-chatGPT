@@ -1,4 +1,5 @@
 import { useMemo, useEffect } from 'react';
+import { useBookingAvailability } from '@/hooks/useBookingAvailability';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -60,9 +61,15 @@ type BookingFormProps = {
 
 export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
   const { language } = useLanguage();
+  const { blockedDates } = useBookingAvailability();
+  const blockedDateMessage = language === 'sv'
+    ? 'Datumet är redan bokat. Välj ett annat datum.'
+    : 'This date is already booked. Please choose another date.';
   
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema.refine(values => !blockedDates.includes(values.date), {
+      path: ['date'], message: blockedDateMessage,
+    })),
     defaultValues: {
       name: '',
       email: '',
@@ -147,8 +154,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
 
   // Sync calendar selection into the form's date field
   useEffect(() => {
-    if (!selectedDate) return;
-    form.setValue('date', formatDateForInput(selectedDate), { shouldValidate: true });
+    form.setValue('date', selectedDate ? formatDateForInput(selectedDate) : '', { shouldValidate: true });
   }, [selectedDate]);
 
   function onSubmit(values: FormValues) {
@@ -308,11 +314,15 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
               type="date"
               aria-label="Event date"
               {...field}
+              ref={(element) => {
+                field.ref(element);
+                element?.setCustomValidity(blockedDates.includes(field.value) ? blockedDateMessage : '');
+              }}
               onChange={(e) => {
                 field.onChange(e);
                 if (e.target.value) {
                   const d = new Date(`${e.target.value}T00:00:00`);
-                  onDateChange?.(d);
+                  if (!blockedDates.includes(e.target.value)) onDateChange?.(d);
                 } else {
                   onDateChange?.(undefined);
                 }

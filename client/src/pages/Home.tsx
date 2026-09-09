@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="animate-in fade-in duration-500">
-      <section id="home" className="relative h-[80vh] w-full overflow-hidden">
+      <section id="home" className="relative min-h-[80vh] md:h-[80vh] w-full overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={content.media.home.heroImage}
@@ -21,11 +21,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
-        <div className="relative h-full container z-10">
+        <div className="relative container z-10 flex flex-col gap-6 py-12 md:block md:h-full md:py-0">
 
           {/* Main hero content */}
-          <div className="h-full flex flex-col items-center justify-center text-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans italic text-white drop-shadow-lg max-w-4xl leading-tight mb-32">
+          <div className="flex flex-col items-center justify-center text-center md:h-full">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans italic text-white drop-shadow-lg max-w-4xl leading-tight mb-8 md:mb-32">
               {t.hero.title}
             </h1>
 
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
 
           {/* Virtual Tour CTA */}
-          <div className="absolute left-4 bottom-10 md:left-8 md:bottom-12">
+          <div className="relative self-center md:absolute md:left-8 md:bottom-12">
             <a href="/location#virtual-tour">
               <div className="group cursor-pointer rounded-2xl border border-white/30 bg-black/55 backdrop-blur-sm shadow-2xl px-5 py-4 md:px-6 md:py-5 transition-transform duration-300 hover:scale-[1.03] max-w-[300px]">
                 <div className="flex items-start gap-3">
@@ -67,7 +67,7 @@ export default function Home() {
           </div>
 
           {/* Jetboard tile */}
-          <div className="absolute right-4 bottom-10 md:right-8 md:bottom-12 w-[88vw] max-w-[360px] md:max-w-[420px]">
+          <div className="relative self-center w-full max-w-[360px] md:absolute md:right-8 md:bottom-12 md:w-[88vw] md:max-w-[420px]">
             <Link href="/jetboard">
               <div className="group cursor-pointer overflow-hidden rounded-2xl border border-white/30 bg-black/55 backdrop-blur-sm shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
                 <div className="relative aspect-video bg-black">
