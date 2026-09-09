@@ -24,6 +24,12 @@ export default function Jetboard() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3">
+                <Button asChild>
+                  <a href="/images/experiences/gonuts/jetboard-promo.mp4" target="_blank" rel="noopener noreferrer">Film 1</a>
+                </Button>
+                <Button asChild>
+                  <a href="https://vimeo.com/915908276" target="_blank" rel="noopener noreferrer">Film 2</a>
+                </Button>
                 <a
                   href="https://vimeo.com/mariohytten/jetboardtutorial?ts=0&share=copy"
                   target="_blank"

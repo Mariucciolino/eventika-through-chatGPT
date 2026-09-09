@@ -4,7 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { content } from '@/lib/content';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
-import { Waves, Zap, Sailboat, Trees, Ship, Gift, ExternalLink } from 'lucide-react';
+import { Waves, Zap, Sailboat, Trees, Ship, Gift } from 'lucide-react';
 
 export default function Experiences() {
   const { t, language } = useLanguage();
@@ -66,18 +66,14 @@ export default function Experiences() {
                     ))}
                   </div>
                   
-                  {/* Vimeo link for Go Nuts jetboard video (index 4) */}
+                  {/* Link to the dedicated Jetboard experience */}
                   {index === 4 && (
                     <div className="mt-4">
-                      <a 
-                        href="https://vimeo.com/915908276" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Jetboard ultimate experience
-                      </a>
+                      <Button asChild>
+                        <Link href="/jetboard">
+                          {language === 'sv' ? 'Mer om JETBOARD' : 'More about JETBOARD'}
+                        </Link>
+                      </Button>
                     </div>
                   )}
                 </div>

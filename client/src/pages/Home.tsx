@@ -70,24 +70,6 @@ export default function Home() {
           <div className="relative self-center w-full max-w-[360px] md:absolute md:right-8 md:bottom-12 md:w-[88vw] md:max-w-[420px]">
             <Link href="/jetboard">
               <div className="group cursor-pointer overflow-hidden rounded-2xl border border-white/30 bg-black/55 backdrop-blur-sm shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
-                <div className="relative aspect-video bg-black">
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    poster="/images/experiences/gonuts/gonuts(3).jpg"
-                  >
-                    <source
-                      src="/images/experiences/gonuts/jetboard-promo.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                </div>
-
                 <div className="p-4 md:p-5">
                   <p className="text-white text-lg md:text-xl font-semibold leading-snug">
                     {isSv
