@@ -16,7 +16,13 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
       <Navigation />
-      
+      <nav data-social-links aria-label={language === 'sv' ? 'Sociala medier' : 'Social media'} className="flex justify-end gap-2 bg-primary text-white px-4 py-2">
+        <a aria-label="Instagram" href="https://www.instagram.com/eventikasweden/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full hover:bg-white/20 focus-visible:outline-2"><Instagram className="h-5 w-5" /></a>
+        <a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=61557832736118" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full hover:bg-white/20 focus-visible:outline-2"><Facebook className="h-5 w-5" /></a>
+        <a aria-label="YouTube" href="https://www.youtube.com/@Eventika.Officiell" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full hover:bg-white/20 focus-visible:outline-2"><Youtube className="h-5 w-5" /></a>
+        <a aria-label="TikTok" href="https://www.tiktok.com/@eventika_landvetter" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full hover:bg-white/20 focus-visible:outline-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg></a>
+      </nav>
+
       <main className="flex-grow">
         {children}
       </main>

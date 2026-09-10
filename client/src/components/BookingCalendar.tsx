@@ -48,7 +48,7 @@ export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarP
       <Calendar
         mode="single"
         locale={language === "sv" ? sv : enUS}
-        weekStartsOn={language === "sv" ? 1 : 0}
+        weekStartsOn={1}
         month={month}
         onMonthChange={setMonth}
         selected={selectedDate}

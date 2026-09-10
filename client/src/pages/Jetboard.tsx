@@ -1,9 +1,39 @@
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+
+type VideoId = "film-1" | "film-2" | "tutorial";
+
+const VIMEO_VIDEOS: Record<Exclude<VideoId, "film-1">, string> = {
+  "film-2": "https://player.vimeo.com/video/915908276",
+  tutorial: "https://player.vimeo.com/video/1007265885?h=17b5017beb",
+};
 
 export default function Jetboard() {
   const { language } = useLanguage();
   const isSv = language === "sv";
+  const [activeVideo, setActiveVideo] = useState<VideoId>("film-1");
+  const [playRequested, setPlayRequested] = useState(0);
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (activeVideo === "film-1" && playRequested) {
+      void localVideoRef.current?.play().catch(() => {
+        // Native controls remain available if the browser blocks playback.
+      });
+    }
+  }, [activeVideo, playRequested]);
+
+  const selectVideo = (video: VideoId) => {
+    setActiveVideo(video);
+    setPlayRequested(request => request + 1);
+  };
+
+  const videoLabels: Record<VideoId, string> = {
+    "film-1": "Film 1",
+    "film-2": "Film 2",
+    tutorial: "Film 3",
+  };
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -11,34 +41,43 @@ export default function Jetboard() {
         <div className="container py-10 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-border bg-black">
-                <video
-                  className="w-full h-auto object-cover"
-                  controls
-                  playsInline
-                  muted
-                  poster="/images/experiences/gonuts/gonuts(3).jpg"
-                >
-                  <source src="/images/experiences/gonuts/jetboard-promo.mp4" type="video/mp4" />
-                </video>
+              <div className="aspect-video rounded-2xl overflow-hidden shadow-xl border border-border bg-black">
+                {activeVideo === "film-1" ? (
+                  <video
+                    ref={localVideoRef}
+                    className="h-full w-full object-cover"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster="/images/experiences/gonuts/gonuts(3).jpg"
+                  >
+                    <source src="/images/experiences/gonuts/jetboard-promo.mp4" type="video/mp4" />
+                  </video>
+                ) : (
+                  <iframe
+                    key={`${activeVideo}-${playRequested}`}
+                    className="h-full w-full"
+                    src={`${VIMEO_VIDEOS[activeVideo]}${VIMEO_VIDEOS[activeVideo].includes("?") ? "&" : "?"}autoplay=1&controls=1`}
+                    title={videoLabels[activeVideo]}
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                    allowFullScreen
+                  />
+                )}
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Button asChild>
-                  <a href="/images/experiences/gonuts/jetboard-promo.mp4" target="_blank" rel="noopener noreferrer">Film 1</a>
-                </Button>
-                <Button asChild>
-                  <a href="https://vimeo.com/915908276" target="_blank" rel="noopener noreferrer">Film 2</a>
-                </Button>
-                <a
-                  href="https://vimeo.com/mariohytten/jetboardtutorial?ts=0&share=copy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="bg-primary hover:bg-primary/90 text-white">
-                    {isSv ? "Jetboard-tutorial" : "Jetboard tutorial"}
+              <div className="mt-4 flex flex-wrap gap-3" aria-label={isSv ? "Välj film" : "Choose video"}>
+                {(Object.keys(videoLabels) as VideoId[]).map(video => (
+                  <Button
+                    key={video}
+                    type="button"
+                    variant={activeVideo === video ? "default" : "outline"}
+                    aria-pressed={activeVideo === video}
+                    data-video-option={video}
+                    onClick={() => selectVideo(video)}
+                  >
+                    {videoLabels[video]}
                   </Button>
-                </a>
+                ))}
               </div>
             </div>
 
