@@ -234,8 +234,10 @@ def test_jetboard(page: Page):
 
     selections = [
         ("film-1", "video", "jetboard-promo.mp4"),
-        ("film-2", "iframe", "player.vimeo.com/video/915908276"),
+        ("film-2", "video", "jetboard-film-2-1080p.mp4"),
         ("tutorial", "iframe", "player.vimeo.com/video/1007265885"),
+        ("film-2", "video", "jetboard-film-2-1080p.mp4"),
+        ("film-1", "video", "jetboard-promo.mp4"),
     ]
     for width, height, language in (
         (width, height, language)
@@ -278,12 +280,13 @@ def test_jetboard(page: Page):
             if any(status >= 400 for _, status in responses):
                 print(f"{language}/{option}: external player blocked in isolated Chrome: {responses}")
     page.navigate("/jetboard")
-    page.click('[data-video-option="film-1"]')
-    time.sleep(0.5)
-    page.js("document.querySelector('video').pause()")
-    page.click('[data-video-option="film-1"]')
-    time.sleep(0.5)
-    assert page.js("!document.querySelector('video').paused"), "Film 1 must resume when selected again"
+    for option in ("film-1", "film-2"):
+        page.click(f'[data-video-option="{option}"]')
+        time.sleep(0.5)
+        page.js("document.querySelector('video').pause()")
+        page.click(f'[data-video-option="{option}"]')
+        time.sleep(0.5)
+        assert page.js("!document.querySelector('video').paused"), f"{option} must resume when selected again"
     print("Jetboard selection and playback requests: PASS (external playback is not asserted)")
 
 

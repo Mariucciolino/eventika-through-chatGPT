@@ -4,8 +4,12 @@ import { Button } from "@/components/ui/button";
 
 type VideoId = "film-1" | "film-2" | "tutorial";
 
-const VIMEO_VIDEOS: Record<Exclude<VideoId, "film-1">, string> = {
-  "film-2": "https://player.vimeo.com/video/915908276",
+const LOCAL_VIDEOS: Record<Exclude<VideoId, "tutorial">, string> = {
+  "film-1": "/images/experiences/gonuts/jetboard-promo.mp4",
+  "film-2": "/images/experiences/gonuts/jetboard-film-2-1080p.mp4",
+};
+
+const VIMEO_VIDEOS: Record<Extract<VideoId, "tutorial">, string> = {
   tutorial: "https://player.vimeo.com/video/1007265885?h=17b5017beb",
 };
 
@@ -17,7 +21,7 @@ export default function Jetboard() {
   const localVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (activeVideo === "film-1" && playRequested) {
+    if (activeVideo !== "tutorial" && playRequested) {
       void localVideoRef.current?.play().catch(() => {
         // Native controls remain available if the browser blocks playback.
       });
@@ -42,8 +46,9 @@ export default function Jetboard() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>
               <div className="aspect-video rounded-2xl overflow-hidden shadow-xl border border-border bg-black">
-                {activeVideo === "film-1" ? (
+                {activeVideo !== "tutorial" ? (
                   <video
+                    key={activeVideo}
                     ref={localVideoRef}
                     className="h-full w-full object-cover"
                     controls
@@ -51,7 +56,7 @@ export default function Jetboard() {
                     preload="metadata"
                     poster="/images/experiences/gonuts/gonuts(3).jpg"
                   >
-                    <source src="/images/experiences/gonuts/jetboard-promo.mp4" type="video/mp4" />
+                    <source src={LOCAL_VIDEOS[activeVideo]} type="video/mp4" />
                   </video>
                 ) : (
                   <iframe
