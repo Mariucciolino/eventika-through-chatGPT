@@ -9,6 +9,19 @@ import { Waves, Zap, Sailboat, Trees, Ship, Gift } from 'lucide-react';
 export default function Experiences() {
   const { t, language } = useLanguage();
 
+  const contactLinkClass = "text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
+  const emailLink = <a href="mailto:mario@eventika.se" className={contactLinkClass}>mario@eventika.se</a>;
+  const phoneLink = <a href="tel:+46760345328" className={contactLinkClass}>0760 345 328</a>;
+  const bookingInstructions = (
+    <p className="text-base md:text-lg text-muted-foreground">
+      {language === 'en' ? (
+        <>To book individual experiences, simply email ({emailLink}) or call Mario ({phoneLink}) with desired experience, number of participants and date. Payment will take place on the day either with debit card, swish or cash.</>
+      ) : (
+        <>För att boka enskilda upplevelser, mejla ({emailLink}) eller ring Mario ({phoneLink}) och ange önskad upplevelse, antal deltagare och datum. Betalning sker på plats samma dag med betalkort, Swish eller kontanter.</>
+      )}
+    </p>
+  );
+
   // Map icons to experience items based on index
   // Order in content.ts: spa, relax, safari, island, gonuts, free
   // Order in instructions: SPA, RELAX, SAFARI, ISLAND, GO NUTS
@@ -30,11 +43,7 @@ export default function Experiences() {
     <div className="animate-in fade-in duration-500">
       <Section id="experiences-hero" title={t.experiences.title} className="bg-secondary/30 pt-12 pb-8">
         <div className="max-w-4xl mx-auto mb-10 text-center">
-          <p className="text-base md:text-lg text-muted-foreground">
-            {language === 'en'
-              ? 'To book individual experiences, simply email mario@eventika.se with desired experience, number of participants and date. Payment will take place on the day either with debit card, swish or cash.'
-              : 'För att boka enstaka upplevelser, skicka en enkel mejl till mario@eventika.se med önskad upplevelse, antal deltagare och datum. Betalning sker på dagen med kort, swish eller kontant.'}
-          </p>
+          {bookingInstructions}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {t.experiences.items.map((exp, index) => {
@@ -82,12 +91,8 @@ export default function Experiences() {
           })}
         </div>
 
-        <div className="text-center mt-16">
-          <Link href="/booking">
-            <Button size="lg" className="text-xl px-12 py-6 uppercase tracking-wide font-bold">
-              {t.hero.cta}
-            </Button>
-          </Link>
+        <div className="max-w-4xl mx-auto text-center mt-16">
+          {bookingInstructions}
         </div>
       </Section>
     </div>
