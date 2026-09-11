@@ -25,7 +25,8 @@ class ExperiencesContactTests(unittest.TestCase):
     def test_same_bilingual_linked_instructions_replace_booking_cta(self):
         page = (ROOT / 'client/src/pages/Experiences.tsx').read_text(encoding='utf-8')
         self.assertNotIn('href="/booking"', page)
-        self.assertEqual(page.count('{bookingInstructions}'), 2)
+        self.assertEqual(page.count('{bookingInstructions}'), 1)
+        self.assertGreater(page.index('{bookingInstructions}'), page.index('mt-16'))
         self.assertIn('href="mailto:mario@eventika.se"', page)
         self.assertIn('href="tel:+46760345328"', page)
         self.assertIn('0760 345 328</a>', page)

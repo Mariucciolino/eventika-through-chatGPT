@@ -42,9 +42,6 @@ export default function Experiences() {
   return (
     <div className="animate-in fade-in duration-500">
       <Section id="experiences-hero" title={t.experiences.title} className="bg-secondary/30 pt-12 pb-8">
-        <div className="max-w-4xl mx-auto mb-10 text-center">
-          {bookingInstructions}
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {t.experiences.items.map((exp, index) => {
             const Icon = icons[index];
