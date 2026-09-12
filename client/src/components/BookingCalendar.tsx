@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { trpc } from "@/lib/trpc";
+import { sv, enUS } from "react-day-picker/locale";
+import { useBookingAvailability } from "@/hooks/useBookingAvailability";
 import { Calendar } from "@/components/ui/calendar";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,27 +12,7 @@ type BookingCalendarProps = {
 export function BookingCalendar({ selectedDate, onSelectDate }: BookingCalendarProps) {
   const { language } = useLanguage();
 
-  const { data: bookedDates } = trpc.calendar.getBookedDates.useQuery(undefined, {
-    refetchOnWindowFocus: true,
-    refetchOnMount: true,
-    staleTime: 0,
-  });
-
-  const manualBlocked = [
-  new Date("2026-05-23T00:00:00"),
-  new Date("2026-05-30T00:00:00"),
-  new Date("2026-08-01T00:00:00"),
-  new Date("2026-08-22T00:00:00"),
-  new Date("2026-08-28T00:00:00"),
-  new Date("2026-08-29T00:00:00"),
-  new Date("2026-09-05T00:00:00"),
-  new Date("2027-06-26T00:00:00"),
-];
-
-const bookedDateObjects = [
-  ...(bookedDates || []).map((dateStr) => new Date(`${dateStr}T00:00:00`)),
-  ...manualBlocked,
-];
+  const { bookedDateObjects, isError, isPending } = useBookingAvailability();
 
   // Control the visible month so navigation always works reliably
   const [month, setMonth] = useState<Date>(() => selectedDate ?? new Date());
@@ -41,7 +22,7 @@ const bookedDateObjects = [
   }, [selectedDate]);
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-border shadow-sm w-full min-w-[380px]">
+    <div className="bg-white p-6 rounded-xl border border-border shadow-sm w-full min-w-0 lg:min-w-[380px]">
       <h3 className="text-xl font-bold mb-4 text-primary">
         {language === "sv" ? "Tillgänglighet" : "Availability"}
       </h3>
@@ -52,8 +33,22 @@ const bookedDateObjects = [
           : "Dates marked in red are already booked. Please choose another date for your inquiry."}
       </p>
 
+      {isError && (
+        <p role="alert" className="mb-4 rounded-md border border-amber-500 bg-amber-50 p-3 text-sm text-amber-950">
+          {language === "sv"
+            ? "Tillgängligheten kunde inte hämtas. Kalendern kan sakna bokade datum. Kontakta oss för att bekräfta ditt datum."
+            : "Availability could not be loaded. Some booked dates may be missing from the calendar. Please contact us to confirm your date."}
+        </p>
+      )}
+      {isPending && (
+        <p role="status" className="mb-4 text-sm text-muted-foreground">
+          {language === "sv" ? "Hämtar tillgänglighet…" : "Loading availability…"}
+        </p>
+      )}
       <Calendar
         mode="single"
+        locale={language === "sv" ? sv : enUS}
+        weekStartsOn={1}
         month={month}
         onMonthChange={setMonth}
         selected={selectedDate}
