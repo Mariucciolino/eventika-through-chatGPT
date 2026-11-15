@@ -108,8 +108,8 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
     const totalGuests = adults + children;
 
     // Standard Price
-    total += 8000; // Location charge
-    total += adults * 200; // Adult guest charge
+    total += 9000; // Location charge
+    total += adults * 250; // Adult guest charge
     total += children * 100; // Child guest charge
 
     // Food options
@@ -127,7 +127,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
     // smartTV, projector, soundSystem are free
 
     // Food equipment
-    if (watchedValues.tableDressing) total += totalGuests * 75;
+    if (watchedValues.tableDressing) total += totalGuests * 85;
     if (watchedValues.grill) total += 350;
 
     // Évika accommodations
@@ -368,7 +368,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
                   name="adults"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{language === 'en' ? 'Adults (200 SEK/pp)' : 'Vuxna (200 SEK/pp)'}</FormLabel>
+                      <FormLabel>{language === 'en' ? 'Adults (250 SEK/pp)' : 'Vuxna (250 SEK/pp)'}</FormLabel>
                       <FormControl>
                         <Input type="number" min="1" placeholder="0" {...field} />
                       </FormControl>
@@ -605,7 +605,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
                             ? 'Choice of plates, glasses, cutlery, tablecloths, including dishwashing' 
                             : 'Val av tallrikar, glas, bestick, dukar, inklusive diskning'}
                         </FormLabel>
-                        <p className="text-primary font-bold">75 SEK/pers</p>
+                        <p className="text-primary font-bold">85 SEK/pers</p>
                       </div>
                     </FormItem>
                   )}
@@ -927,12 +927,12 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span>{language === 'en' ? 'Location charge' : 'Lokalhyra'}</span>
-                <span className="font-medium">8 000 SEK</span>
+                <span className="font-medium">9 000 SEK</span>
               </div>
               {parseInt(watchedValues.adults || '0') > 0 && (
                 <div className="flex justify-between">
-                  <span>{watchedValues.adults} {language === 'en' ? 'adults' : 'vuxna'} × 200 SEK</span>
-                  <span className="font-medium">{parseInt(watchedValues.adults || '0') * 200} SEK</span>
+                  <span>{watchedValues.adults} {language === 'en' ? 'adults' : 'vuxna'} × 250 SEK</span>
+                  <span className="font-medium">{parseInt(watchedValues.adults || '0') * 250} SEK</span>
                 </div>
               )}
               {parseInt(watchedValues.children || '0') > 0 && (
@@ -957,7 +957,7 @@ export function BookingForm({ selectedDate, onDateChange }: BookingFormProps) {
               {watchedValues.tableDressing && (
                 <div className="flex justify-between">
                   <span>{language === 'en' ? 'Table dressing' : 'Dukning'}</span>
-                  <span className="font-medium">{(parseInt(watchedValues.adults || '0') + parseInt(watchedValues.children || '0')) * 75} SEK</span>
+                  <span className="font-medium">{(parseInt(watchedValues.adults || '0') + parseInt(watchedValues.children || '0')) * 85} SEK</span>
                 </div>
               )}
               {watchedValues.grill && (
