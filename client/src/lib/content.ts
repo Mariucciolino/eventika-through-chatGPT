@@ -25,11 +25,11 @@ export const content = {
         title: "standard price",
         locationCharge: {
           label: "Location charge",
-          price: "8 000 SEK"
+          price: "9 000 SEK"
         },
         adultGuest: {
           label: "per adult guest",
-          price: "200 SEK"
+          price: "250 SEK"
         },
         childGuest: {
           label: "per child over 12 years of age",
@@ -48,7 +48,7 @@ export const content = {
           "for children: trampoline, swings, playhouse, etc.",
           "large fridge to cool down food/drinks",
           "access: 24 hours before the start and 24 hours after the event, to allow for preparations and packing up",
-          "Deposit = Location charge 8000 SEK. The deposit is paid to block the date and confirm the booking. The deposit is refundable if cancellation occurs 90 days or more before the event date"
+          "Deposit = Location charge 9000 SEK. The deposit is paid to block the date and confirm the booking. The deposit is refundable if cancellation occurs 90 days or more before the event date"
         ]
       },
       optionals: {
@@ -57,7 +57,7 @@ export const content = {
           { title: "catering", description: "you set the budget and you will get to choose from 3 menus from our favorite caterer", price: "350-650 SEK/pers" },
           { title: "kitchen", description: "if you bring your own food or caterer: use of our kitchen with its equipment: 6 hot-plates, oven, micro-oven, industrial dishwasher, fridge, freezer, mixers, etc", price: "2500 SEK" },
           { title: "grill", description: "BBQ grill with gas", price: "350 SEK" },
-          { title: "table-dressing", description: "plates, glasses, cutlery, tablecloths, dishwashing, etc", price: "75 SEK/pers" },
+          { title: "table-dressing", description: "plates, glasses, cutlery, tablecloths, dishwashing, etc", price: "85 SEK/pers" },
           { title: "Overnighting", description: "per adult per night", price: "750 SEK" },
           { title: "unlimited toy-package", description: "unlimited access for all participants during the event to a selection of the 'toys' described under EXPERIENCES", price: "3000 SEK" },
           { title: "cleaning", description: "professional cleaning service after your event", price: "3500 SEK" }
@@ -164,11 +164,11 @@ export const content = {
       items: [
         {
           question: "How do I book the venue?",
-          answer: "Fill out our booking request form with your event details, preferred date, and guest count. We'll respond within 24 hours with availability confirmation and next steps. A deposit of 8,000 SEK (location charge) is required to secure your date."
+          answer: "Fill out our booking request form with your event details, preferred date, and guest count. We'll respond within 24 hours with availability confirmation and next steps. A deposit of 9,000 SEK (location charge) is required to secure your date."
         },
         {
           question: "What is your cancellation policy?",
-          answer: "The 8,000 SEK deposit (location charge) is fully refundable if you cancel 90 days or more before your event date. Cancellations made less than 90 days before the event will forfeit the deposit."
+          answer: "The 9,000 SEK deposit (location charge) is fully refundable if you cancel 90 days or more before your event date. Cancellations made less than 90 days before the event will forfeit the deposit."
         },
         {
           question: "What is included in the standard price?",
@@ -231,11 +231,11 @@ export const content = {
         title: "standardpris",
         locationCharge: {
           label: "Anläggningsavgift",
-          price: "8 000 SEK"
+          price: "9 000 SEK"
         },
         adultGuest: {
           label: "per vuxen gäst",
-          price: "200 SEK"
+          price: "250 SEK"
         },
         childGuest: {
           label: "per barn över 12 år",
@@ -254,7 +254,7 @@ export const content = {
           "för barn: studsmatta, gungor, lekstuga, etc.",
           "stor kyl för att kyla mat/dryck",
           "tillgång: 24 timmar före start och 24 timmar efter evenemanget, för att möjliggöra förberedelser och ihopplockning",
-          "Lokalhyran betalas som deposition för att förbehålla datumet. Återbetalas om avbokning sker 90+ dagar före evenemanget. Deposition = Lokalhyra 8000kr"
+          "Lokalhyran betalas som deposition för att förbehålla datumet. Återbetalas om avbokning sker 90+ dagar före evenemanget. Deposition = Lokalhyra 9000kr"
         ]
       },
       optionals: {
@@ -263,7 +263,7 @@ export const content = {
           { title: "catering", description: "du sätter budgeten och får välja mellan 3 menyer från vår favoritcaterare", price: "350-650 SEK/pers" },
           { title: "kök", description: "om du tar med egen mat eller caterare: användning av vårt kök med utrustning: 6 kokplattor, ugn, mikrovågsugn, industriell diskmaskin, kyl, frys, mixers, etc", price: "2500 SEK" },
           { title: "grill", description: "BBQ-grill med gasol", price: "350 SEK" },
-          { title: "dukning", description: "tallrikar, glas, bestick, dukar, diskning, etc", price: "75 SEK/pers" },
+          { title: "dukning", description: "tallrikar, glas, bestick, dukar, diskning, etc", price: "85 SEK/pers" },
           { title: "Övernattning", description: "per vuxen per natt", price: "750 SEK" },
           { title: "obegränsat leksakspaket", description: "obegränsad tillgång för alla deltagare under evenemanget till ett urval av 'leksakerna' som beskrivs under UPPLEVELSER", price: "3000 SEK" },
           { title: "städning", description: "professionell städservice efter ditt evenemang", price: "3500 SEK" }
@@ -370,11 +370,11 @@ export const content = {
       items: [
         {
           question: "Hur bokar jag lokalen?",
-          answer: "Fyll i vårt bokningsformulär med dina eventdetaljer, önskat datum och antal gäster. Vi svarar inom 24 timmar med bekräftelse på tillgänglighet och nästa steg. En deposition på 8 000 SEK (lokalhyra) krävs för att säkra ditt datum."
+          answer: "Fyll i vårt bokningsformulär med dina eventdetaljer, önskat datum och antal gäster. Vi svarar inom 24 timmar med bekräftelse på tillgänglighet och nästa steg. En deposition på 9 000 SEK (lokalhyra) krävs för att säkra ditt datum."
         },
         {
           question: "Vad är er avbokningspolicy?",
-          answer: "Depositionen på 8 000 SEK (lokalhyra) återbetalas fullt ut om du avbokar 90 dagar eller mer före ditt eventdatum. Avbokningar som görs mindre än 90 dagar före evenemanget förlorar depositionen."
+          answer: "Depositionen på 9 000 SEK (lokalhyra) återbetalas fullt ut om du avbokar 90 dagar eller mer före ditt eventdatum. Avbokningar som görs mindre än 90 dagar före evenemanget förlorar depositionen."
         },
         {
           question: "Vad ingår i standardpriset?",
